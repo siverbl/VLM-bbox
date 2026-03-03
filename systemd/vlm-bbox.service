@@ -1,0 +1,18 @@
+[Unit]
+Description=Qwen2-VL bbox service (Hailo 10H)
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/opt/vlm-bbox
+Environment="BBOX_LOG_LEVEL=WARNING"
+Environment="BBOX_MAX_IMAGE_DIM=512"
+Environment="BBOX_JPEG_QUALITY=85"
+ExecStart=/opt/vlm-bbox/scripts/run_server.sh
+Restart=always
+RestartSec=2
+Nice=-5
+
+[Install]
+WantedBy=multi-user.target
